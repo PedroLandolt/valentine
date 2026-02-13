@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#333333" />
+  <title>Queres ser a minha Valentine?</title>
+  <meta name="description" content="Um convite muito especial para ti" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(0, 0%, 20%);
+      color: hsl(340, 60%, 30%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: hsl(340, 100%, 93%);
+      color: hsl(340, 60%, 25%);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .card {
+        padding: 2rem;
+      }
+    }
+
+    .image-wrapper {
+      width: 176px;
+      height: 176px;
+      margin: 0 auto 1.25rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .image-wrapper {
+        width: 208px;
+        height: 208px;
+      }
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+      color: hsl(340, 60%, 25%);
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn-yes {
+      background: hsl(346, 100%, 65%);
+      color: #fff;
+      border: none;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease-out, font-size 0.3s ease-out, filter 0.2s;
+    }
+
+    .btn-yes:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-yes:active {
+      transform: scale(0.95) !important;
+    }
+
+    .btn-no {
+      background: #fff;
+      color: hsl(0, 0%, 25%);
+      border: 1px solid hsl(340, 30%, 80%);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-no:hover {
+      background: hsl(340, 30%, 85%);
+    }
+
+    .btn-no:active {
+      transform: scale(0.95);
+    }
+
+    .message {
+      margin-top: 1.25rem;
+      font-weight: 700;
+      color: hsl(340, 60%, 25%);
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
+
+    .message.dancing {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+    }
+
+    .message.shout {
+      font-size: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .message.shout {
+        font-size: 1.125rem;
+      }
+    }
+
+    /* Accepted state */
+    .accepted-card {
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
+
+    .heart-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 3.25rem;
+      animation: pulse-soft 1.5s ease-in-out infinite;
+    }
+
+    @media (min-width: 640px) {
+      .heart-icon {
+        width: 96px;
+        height: 96px;
+      }
+    }
+
+    .accepted-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.75rem;
+      color: hsl(340, 60%, 25%);
+      margin-bottom: 0.75rem;
+    }
+
+    .accepted-sub {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: hsl(340, 60%, 25%);
+      opacity: 0.8;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: 20%;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: float-heart 1.8s ease-out forwards;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes float-heart {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fade-in-up {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse-soft {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.04);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Question state -->
+  <div class="card" id="questionCard">
+    <div class="image-wrapper">
+      <img src="images/cat-moon.jpg" alt="Gato preto fofo com lua" />
+    </div>
+    <h1>Queres ser a minha Valentine?</h1>
+    <div class="buttons">
+      <button class="btn-yes" id="btnYes" onclick="handleYes()">Xim</button>
+      <button class="btn-no" id="btnNo" onclick="handleNo()">Nao</button>
+    </div>
+    <p class="message hidden" id="message"></p>
+  </div>
+
+  <!-- Accepted state -->
+  <div class="card accepted-card hidden" id="acceptedCard">
+    <div class="heart-icon">&#x1F9E1;</div>
+    <p class="accepted-text">Sabia que ias dizer que xim &#x1F60C;&#x1F5A4;&#x1F9E1;</p>
+    <p class="accepted-sub">Amo-te daqui ate a Lua &#x1F319;&#x1F9E1;</p>
+  </div>
+
+  <script>
+    let noCount = 0;
+    let yesScale = 1;
+
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const questionCard = document.getElementById('questionCard');
+    const acceptedCard = document.getElementById('acceptedCard');
+    const messageEl = document.getElementById('message');
+
+    function handleNo() {
+      noCount++;
+      yesScale = Math.min(yesScale + 0.15, 2.2);
+
+      btnYes.style.transform = 'scale(' + yesScale + ')';
+      const fontSize = Math.min(1 + (yesScale - 1) * 0.25, 1.4);
+      btnYes.style.fontSize = fontSize + 'rem';
+
+      if (noCount >= 6) {
+        messageEl.textContent = 'JA CHEGA DE BRINCADEIRAS ES A MINHA PA E NAO TEM COMO FUGIRES TRENGA';
+        messageEl.className = 'message shout';
+        btnNo.classList.add('hidden');
+      } else if (noCount >= 3) {
+        messageEl.textContent = 'Deixa de ser um molocotone!';
+        messageEl.className = 'message dancing';
+      }
+    }
+
+    function handleYes() {
+      questionCard.classList.add('hidden');
+      acceptedCard.classList.remove('hidden');
+
+      const emojis = ['\u{1F5A4}', '\u{1F9E1}', '\u{1F319}', '\u{1F495}'];
+      for (let i = 0; i < 12; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'floating-heart';
+        heart.style.left = (Math.random() * 100) + '%';
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(heart);
+
+        setTimeout(function() {
+          heart.remove();
+        }, 2200);
+      }
+    }
+  </script>
+</body>
+</html>

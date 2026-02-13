@@ -39,10 +39,10 @@ export function ValentineCard() {
   // Determine which message to show
   const getMessage = () => {
     if (noCount >= 6) {
-      return "JA CHEGA DE BRINCADEIRAS ES A MINHA PA E NAO TEM COMO FUGIRES TRENGA"
+      return "JÁ CHEGA DE BRINCADEIRAS ÉS A MINHA PÁ! E NÃO TEM COMO FUGIRES TRENGA"
     }
     if (noCount >= 3) {
-      return "Deixa de ser um molocotone!"
+      return "Deixa de ser um Molocotone!"
     }
     return null
   }
